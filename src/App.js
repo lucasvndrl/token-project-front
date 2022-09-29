@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Button } from '@mui/material';
+import AppTopBar from './components/AppBar';
+import { createTheme, ThemeProvider } from '@mui/material';
+import Routes from './router';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#9F00FF',
+    },
+  },
+});
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider  theme={theme}>
+        <AppTopBar />
+        <Button variant="outlined">Hello MUI!</Button>
+      </ThemeProvider>
     </div>
   );
 }
