@@ -1,6 +1,10 @@
-import { Button } from "@mui/material";
+import { Container, Box, Button } from "@mui/material";
 import React from "react";
 
 export const TokenList = () => {
-  return <Button variant="outlined">Lista de Tokens</Button>;
+  return (
+    <Container sx={{ display: "flex" }} maxWidth={false} maxHeight={false}>
+      <Box sx={{ backgroundColor: "darkcyan", flexGrow: 1, height: 900 }}></Box>
+    </Container>
+  );
 };

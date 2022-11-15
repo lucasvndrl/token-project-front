@@ -1,6 +1,13 @@
-import { Box, Container, Divider, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  CardContent,
+  Container,
+  Divider,
+  Grid,
+  Stack,
+  Typography,
+} from "@mui/material";
 import React from "react";
-import { TokenCardList } from "../../components/TokenCardList";
 
 export const TokenViewer = () => {
   const tokens = [
@@ -8,12 +15,42 @@ export const TokenViewer = () => {
       tokenNumber: 1,
       tokenPriority: "PRIORIDADE",
     },
+    {
+      tokenNumber: 2,
+      tokenPriority: "NORMAL",
+    },
+    {
+      tokenNumber: 3,
+      tokenPriority: "PRIORIDADE",
+    },
+    {
+      tokenNumber: 4,
+      tokenPriority: "NORMAL",
+    },
   ];
 
+  const bull = (
+    <Box
+      component="span"
+      sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
+    >
+      •
+    </Box>
+  );
+
   return (
-    <Container sx={{ alignItems: "center", display: "flex" }}>
+    <Container
+      sx={{
+        alignItems: "center",
+        display: "flex",
+        boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+        borderBottomLeftRadius: 5,
+        borderBottomRightRadius: 5,
+      }}
+    >
       <Stack sx={{ flexGrow: 1 }}>
-        <Box sx={{ backgroundColor: "palegreen" }}>
+        <Box>
+          <br />
           <Typography
             variant="h3"
             component="div"
@@ -22,10 +59,10 @@ export const TokenViewer = () => {
             TOKEN DA VEZ
           </Typography>
         </Box>
+        <br />
         <Divider variant="fullWidth" />
         <Box
           sx={{
-            backgroundColor: "darkviolet",
             height: 500,
             alignItems: "center",
             display: "flex",
@@ -40,14 +77,34 @@ export const TokenViewer = () => {
           </Typography>
         </Box>
         <Divider variant="fullWidth" />
-        <Stack direction="row" spacing={2}>
-          {tokens.map((token, index) => (
-            <TokenCardList
-              tokenNumber={token.tokenNumber}
-              tokenPriority={token.tokenPriority}
-            />
+        <br />
+        <Grid container spacing={4}>
+          {tokens.map((token) => (
+            <Grid key={token.tokenNumber} item xs={2} md={3}>
+              <CardContent
+                sx={{
+                  boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+                  borderRadius: 5,
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  component="div"
+                  sx={{ flexGrow: 1, fontWeight: "bold" }}
+                >
+                  {bull}
+                  {token.tokenNumber}
+                  {bull}
+                </Typography>
+                <Divider variant="fullWidth" />
+                <Typography variant="h5" component="div">
+                  {token.tokenPriority}
+                </Typography>
+              </CardContent>
+            </Grid>
           ))}
-        </Stack>
+        </Grid>
+        <br />
       </Stack>
     </Container>
   );
