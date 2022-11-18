@@ -1,10 +1,23 @@
-import { Container, Box, Button } from "@mui/material";
+import {
+  TableContainer,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  Paper,
+} from "@mui/material";
 import React from "react";
 
 export const TokenList = () => {
   return (
-    <Container sx={{ display: "flex" }} maxWidth={false} maxHeight={false}>
-      <Box sx={{ backgroundColor: "darkcyan", flexGrow: 1, height: 900 }}></Box>
-    </Container>
+    <TableContainer component={Paper}>
+      <Table aria-label="simple table">
+        <TableHead></TableHead>
+        <TableBody></TableBody>
+      </Table>
+    </TableContainer>
   );
 };
+
+const tableData = [];
