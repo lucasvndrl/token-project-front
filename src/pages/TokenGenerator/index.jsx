@@ -8,6 +8,7 @@ import {
   Select,
   Stack,
 } from "@mui/material";
+import axios from "axios";
 import React, { useState } from "react";
 
 export const TokenGenerator = () => {
@@ -16,6 +17,32 @@ export const TokenGenerator = () => {
   const handleChange = (event) => {
     setTokenType(event.target.value);
   };
+
+  const data = {
+    token_type: tokenType
+  }
+
+  const handleSubmit = async () => {
+    axios({
+        url:'/token/',
+        data:data,
+        method:"POST",
+        mode: 'no-cors',
+        headers:{
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": process.env.REACT_APP_API_URL,
+            "Access-Control-Request-Headers": 'Content-Type, Authorization'
+
+        }
+    })
+    .then(res => {
+        console.log(res);
+    })
+    .catch(err =>{
+        console.log(err);
+    })
+  }
+
   return (
     <Container
       sx={{
@@ -37,12 +64,12 @@ export const TokenGenerator = () => {
               value={tokenType}
               onChange={handleChange}
             >
-              <MenuItem value="Prioritário">Prioritário</MenuItem>
-              <MenuItem value="Comum">Comum</MenuItem>
-              {console.log(tokenType)}
+              <MenuItem value="SP">Prioritário</MenuItem>
+              <MenuItem value="SG">Comum</MenuItem>
+              <MenuItem value="SE">Resultados exames</MenuItem>
             </Select>
           </FormControl>
-          <Button>GERAR TOKEN</Button>
+          <Button onClick={handleSubmit}>GERAR TOKEN</Button>
         </Stack>
       </Paper>
     </Container>
