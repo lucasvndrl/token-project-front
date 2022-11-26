@@ -13,12 +13,12 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 
-export const TokenList = () => {
+export const TokenListPriority = () => {
   const [rows, setRows] = useState([]);
 
   const getData = async () => {
     axios({
-      url: '/token/',
+      url: '/token/priority',
       method: 'GET',
       mode: 'no-cors',
       headers: {
@@ -47,7 +47,9 @@ export const TokenList = () => {
       <Stack sx={{ width: '100%' }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="caption table">
-            <caption>Quantitativo geral dos tokens emitidos.</caption>
+            <caption>
+              Quantitativo geral dos tokens prioritários emitidos.
+            </caption>
             <TableHead>
               <TableRow>
                 <TableCell>ID</TableCell>
