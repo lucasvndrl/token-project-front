@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   CardContent,
   Container,
   Divider,
@@ -15,9 +16,31 @@ import { useEffect } from 'react';
 export const TokenViewer = () => {
   const [tokens, setTokens] = useState([]);
   const [firstToken, setFirstToken] = useState({});
+
+  const handleFinishedToken = async id => {
+    axios({
+      url: '/token/' + id,
+      method: 'PUT',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': process.env.REACT_APP_API_URL,
+        'Access-Control-Request-Headers': 'Content-Type, Authorization',
+      },
+    })
+      .then(res => {
+        if (res.status === 200) {
+          window.location.reload();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   const getData = async () => {
     axios({
-      url: '/token/',
+      url: '/token/unfinished',
       method: 'GET',
       mode: 'no-cors',
       headers: {
@@ -27,8 +50,13 @@ export const TokenViewer = () => {
       },
     })
       .then(res => {
-        setTokens(res.data);
-        setFirstToken(res.data[0]);
+        if (res.data === []) {
+          setTokens([]);
+          setFirstToken([]);
+        } else {
+          setTokens(res.data);
+          setFirstToken(res.data[0]);
+        }
       })
       .catch(err => {
         console.log(err);
@@ -71,6 +99,9 @@ export const TokenViewer = () => {
           >
             TOKEN DA VEZ
           </Typography>
+          <Button onClick={() => handleFinishedToken(firstToken.id)}>
+            ATENDER TOKEN
+          </Button>
         </Box>
         <br />
         <Divider variant="fullWidth" />
@@ -84,9 +115,9 @@ export const TokenViewer = () => {
           <Typography
             variant="h1"
             component="h1"
-            sx={{ fontWeight: 'bold', flexGrow: 1, fontSize: 500 }}
+            sx={{ fontWeight: 'bold', flexGrow: 1, fontSize: 200 }}
           >
-            {firstToken.id}
+            {firstToken.token_number}
           </Typography>
         </Box>
         <Divider variant="fullWidth" />
@@ -112,9 +143,6 @@ export const TokenViewer = () => {
                       {bull}
                     </Typography>
                     <Divider variant="fullWidth" />
-                    <Typography variant="h5" component="div">
-                      {token.token_type}
-                    </Typography>
                   </CardContent>
                 </Grid>
               )

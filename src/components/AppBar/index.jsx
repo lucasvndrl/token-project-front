@@ -62,6 +62,29 @@ export default function AppTopBar() {
               </Typography>
             </Button>
           </NavLink>
+          <NavLink to="/token-finished-list" style={{ textDecoration: 'none' }}>
+            <Button
+              variant="text"
+              startIcon={<AlarmAddRounded></AlarmAddRounded>}
+            >
+              <Typography variant="h6" component="div" color="primary">
+                Lista de Tokens Atendidos
+              </Typography>
+            </Button>
+          </NavLink>
+          <NavLink
+            to="/token-finished-priority-list"
+            style={{ textDecoration: 'none' }}
+          >
+            <Button
+              variant="text"
+              startIcon={<AlarmAddRounded></AlarmAddRounded>}
+            >
+              <Typography variant="h6" component="div" color="primary">
+                Lista de Tokens Prioritários Atendidos
+              </Typography>
+            </Button>
+          </NavLink>
           <NavLink to="/token-viewer" style={{ textDecoration: 'none' }}>
             <Button variant="text" startIcon={<Dvr></Dvr>}>
               <Typography variant="h6" component="div" color="primary">

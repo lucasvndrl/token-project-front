@@ -1,6 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home/Home';
+import { TokenFinishedList } from './pages/TokenFinishedList';
+import { TokenFinishedPriorityList } from './pages/TokenFinishedPriorityList';
 import { TokenGenerator } from './pages/TokenGenerator';
 import { TokenList } from './pages/TokenList';
 import { TokenListPriority } from './pages/TokenListPriority';
@@ -26,6 +28,16 @@ const routes = [
     component: <TokenListPriority />,
     name: 'Lista de Tokens Prioritários',
     path: '/token-list-priority',
+  },
+  {
+    component: <TokenFinishedList />,
+    name: 'Lista de Tokens Atendidos',
+    path: '/token-finished-list',
+  },
+  {
+    component: <TokenFinishedPriorityList />,
+    name: 'Lista de Tokens Prioritários Atendidos',
+    path: '/token-finished-priority-list',
   },
   {
     component: <Home />,
